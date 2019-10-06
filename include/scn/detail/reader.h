@@ -1186,9 +1186,8 @@ namespace scn {
             expected<std::ptrdiff_t> _read_float(T& val, span<const CharT> s)
             {
                 size_t chars{};
-                std::basic_string<CharT> str(s.data(), s.size());
                 SCN_CLANG_PUSH_IGNORE_UNDEFINED_TEMPLATE
-                auto ret = _read_float_impl(str.data(), chars);
+                auto ret = _read_float_impl(s, chars);
                 SCN_CLANG_POP_IGNORE_UNDEFINED_TEMPLATE
                 if (!ret) {
                     return ret.error();
@@ -1198,7 +1197,7 @@ namespace scn {
             }
 
             template <typename CharT>
-            expected<T> _read_float_impl(const CharT* str, size_t& chars);
+            expected<T> _read_float_impl(span<const CharT> s, size_t& chars);
         };
 
         struct string_scanner {
