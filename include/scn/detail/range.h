@@ -74,7 +74,7 @@ namespace scn {
             Iterator begin,
             Sentinel end)
         {
-            return {begin, static_cast<size_t>(ranges::distance(begin, end))};
+            return {&*begin, static_cast<size_t>(ranges::distance(begin, end))};
         }
 #endif
 
